@@ -3,6 +3,7 @@ import { User } from '../models/user.model'
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
+
 // AUTH ROUTES 
 
 export async function register(req: FastifyRequest, reply: FastifyReply) {
@@ -29,7 +30,7 @@ export async function register(req: FastifyRequest, reply: FastifyReply) {
                 email: user.email,
                 role: user.role
             },
-            'secretKey',// rework this with dotenv
+            process.env.JWT_SECRET || 'defaultSecretKey', // Ensure a fallback value for JWT_SECRET
             { expiresIn: '1h' }
         )
         reply.code(201).send({ token })
@@ -61,7 +62,7 @@ export async function login(req: FastifyRequest, reply: FastifyReply) {
                 email: user.email,
                 role: user.role
             },
-            'secretKey',// rework this with dotenv
+            process.env.JWT_SECRET || 'defaultSecretKey',// rework this with dotenv
             { expiresIn: '1h' }
         )
         reply.code(201).send({ token })
@@ -81,7 +82,7 @@ export async function verifyToken(req: FastifyRequest, reply: FastifyReply) {
         return
     }
     try {
-        const decoded = jwt.verify(token, 'secretKey') // rework this with dotenv
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'defaultSecretKey') // rework this with dotenv
         // req.user = decoded
         reply.code(200).send({ message: 'Token is valid', user: decoded })
     } catch (err) {
@@ -127,7 +128,7 @@ function signTokenWithUser(user: InstanceType<typeof User>): string {
             email: user.email,
             role: user.role
         },
-        'secretKey',// rework this with dotenv
+        process.env.JWT_SECRET || 'defaultSecretKey',// rework this with dotenv
         { expiresIn: '1h' }
     )
     return token

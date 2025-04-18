@@ -2,7 +2,9 @@ import Fastify from 'fastify'
 import dbConnector from './plugins/db'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
+import dotenv from 'dotenv'
 
+dotenv.config()
 const app = Fastify({
     logger: true,
 })
