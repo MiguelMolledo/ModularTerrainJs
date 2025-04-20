@@ -1,5 +1,6 @@
 import { FastifyRequest, FastifyReply, FastifyTypeProvider } from 'fastify'
 import { User } from '../models/user.model'
+import jwt from 'jsonwebtoken'
 
 // ex
 
@@ -62,10 +63,26 @@ export async function updateById(req: FastifyRequest, reply: FastifyReply) {
     }
 
 }
+export function extractUserIdFromHeaders(req: FastifyRequest): string | null {
+    const authHeader = req.headers['authorization'] || req.headers['Authorization']
+    if (!authHeader || typeof authHeader !== 'string') return null
+
+    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader
+    try {
+        const decoded = jwt.decode(token) as { id?: string }
+        return decoded && decoded.id ? decoded.id : null
+    } catch {
+        return null
+    }
+}
 
 export async function deleteById(req: FastifyRequest, reply: FastifyReply) {
 
+    const jwtTokenId = extractUserIdFromHeaders(req)
     const { id } = req.params as { id: string }
+
+    console.log('JWT Token ID:', jwtTokenId)
+    console.log('Request ID:', id)
     try {
         const user = await User.findByIdAndDelete(id)
         if (!user) {

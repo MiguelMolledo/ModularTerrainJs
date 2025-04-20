@@ -9,19 +9,13 @@ export default async function materialRoutes(fastify: FastifyInstance) {
         preHandler: async (req, reply) => {
             await verifyToken(req, reply);
         }
-    }, controller.getAll)
+    }, controller.getAll);
 
     fastify.get('/:id', {
         preHandler: async (req, reply) => {
             await verifyToken(req, reply);
         }
-    }, controller.getById)
-
-    fastify.get('/:name', {
-        preHandler: async (req, reply) => {
-            await verifyToken(req, reply);
-        }
-    }, controller.getByName)
+    }, controller.getById);
 
     fastify.post('/', {
         preHandler: async (req, reply) => {
@@ -29,21 +23,21 @@ export default async function materialRoutes(fastify: FastifyInstance) {
             await verifyTokenAndRole(req, reply, 'admin');
         }
     },
-        controller.create)
+        controller.create);
 
     fastify.put('/:id', {
         preHandler: async (req, reply) => {
             await verifyToken(req, reply);
             await verifyTokenAndRole(req, reply, 'admin');
         }
-    }, controller.updateById)
+    }, controller.updateById);
 
     fastify.delete('/:id', {
         preHandler: async (req, reply) => {
             await verifyToken(req, reply);
             await verifyTokenAndRole(req, reply, 'admin');
         }
-    }, controller.deleteById)
+    }, controller.deleteById);
 
 
 

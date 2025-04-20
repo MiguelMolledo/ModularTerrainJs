@@ -1,0 +1,89 @@
+#### GET request
+GET http://127.0.0.1:3000/users/all
+
+
+GET http://127.0.0.1:3000/users/?id=1
+
+
+
+### AUTH REQUESTS
+
+#### Register
+POST http://127.0.0.1:3000/auth/register
+Content-Type: application/json
+
+{
+  "name": "MiguelMolledo",
+  "email": "molledom@example.com",
+  "password": "unhashedPassword",
+  "role": "admin"
+}
+
+
+### Register another user
+POST http://127.0.0.1:3000/auth/register
+Content-Type: application/json
+
+{
+  "name": "Blanca",
+  "email": "blanxs@example.com",
+  "password": "superpassword"
+}
+
+
+
+### Login
+POST http://127.0.0.1:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "molledom@example.com",
+  "password": "unhashedPassword"
+}
+
+### get current user
+GET http://localhost:3000/users/current
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDQ5MjMyNjUsImV4cCI6MTc0NDkyNjg2NX0.45ejBxkE6gZ93jwEvTv0jVRxPdOLwsyllfJmsORMMTo
+
+
+### get current user
+GET http://localhost:3000/users/current
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YjNjZDJkZjVlZTg2ZjhhMDUzMyIsImVtYWlsIjoiYmxhbnhzQGV4YW1wbGUuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3NDQ5MjM0NTIsImV4cCI6MTc0NDkyNzA1Mn0.XZy35ZaQwGY7ltvYToWwM5kT5prqVqIo5CFN7ni6y5M
+
+### UPDATE request
+PUT http://localhost:3000/users/update
+
+### Get all users
+GET http://localhost:3000/users/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUwNjQ3MDgsImV4cCI6MTc0NTA2ODMwOH0.2eyjZb4MvlGmcJwqgw_zXIvx6Rdxb6hsajxmz4k_kVY
+
+
+
+PUT http://localhost:3000/users/update
+Content-Type: application/json
+
+
+### Get all Materials
+GET http://localhost:3000/materials/all
+
+
+### Get Material By ID
+GET http://localhost:3000/materials/?id=1
+
+
+
+### Get Material By Name
+GET http://localhost:3000/materials/?name=1
+
+### Create Material
+POST http://localhost:3000/materials/
+Content-Type: application/json
+
+{
+  "name": "PVA Glue",
+  "description": "PVA glue is a white, water-based adhesive that dries clear and flexible. It is commonly used in arts and crafts, woodworking, and paper projects.",
+  "dimensions": "1L",
+  "price": 5.66
+}
+
+

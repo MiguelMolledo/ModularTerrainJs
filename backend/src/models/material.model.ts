@@ -5,16 +5,8 @@ const materialSchema = new Schema({
     description: String,
     image: String,
     webLinks: String,
-    price: { tpye: Number, Min: 0 },
-    dimensions: {
-        type: [String], validate: {
-            validator: function (value: string) {
-                // Validate format like "30cm x 50cm" or "1meter x 2meters"
-                return /^[0-9]+(cm|meter|mm|inch|ml|l)? x [0-9]+(cm|meter|mm|inch|ml|l)?$/.test(value);
-            },
-            message: (props: { value: string }) => `${props.value} is not a valid dimension format!`
-        }
-    },
+    price: Number,
+    dimensions: String,
 
 
 }, { timestamps: true });
