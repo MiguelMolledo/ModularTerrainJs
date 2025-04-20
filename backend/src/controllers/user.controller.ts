@@ -63,48 +63,20 @@ export async function updateById(req: FastifyRequest, reply: FastifyReply) {
     }
 
 }
-export function extractUserIdFromHeaders(req: FastifyRequest): string | null {
-    const authHeader = req.headers['authorization'] || req.headers['Authorization']
-    if (!authHeader || typeof authHeader !== 'string') return null
-
-    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader
-    try {
-        const decoded = jwt.decode(token) as { id?: string }
-        return decoded && decoded.id ? decoded.id : null
-    } catch {
-        return null
-    }
-}
 
 export async function deleteById(req: FastifyRequest, reply: FastifyReply) {
 
-    const jwtTokenId = extractUserIdFromHeaders(req)
     const { id } = req.params as { id: string }
 
-    console.log('JWT Token ID:', jwtTokenId)
     console.log('Request ID:', id)
     try {
-        const user = await User.findByIdAndDelete(id)
+        const user = await User.findByIdAndDelete(id);
         if (!user) {
-            reply.code(404).send({ error: 'User not found' })
+            reply.code(404).send({ error: 'User not found' });
         } else {
-            reply.code(200).send({ message: 'User deleted successfully' })
+            reply.code(200).send({ message: 'User deleted successfully' });
         }
+    } catch (err) {
+        reply.code(500).send({ error: 'Error deleting user', details: err });
     }
-    catch (err) {
-        reply.code(500).send({ error: 'Error deleting user', details: err })
-    }
-
 }
-
-
-
-// post Create User
-// put  Update User Data
-// post Delete User
-// Get User by Id
-// Get User by Email
-// Get All Users
-// Get All Users by Name
-
-

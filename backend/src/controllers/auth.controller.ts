@@ -135,33 +135,3 @@ function signTokenWithUser(user: InstanceType<typeof User>): string {
 }
 
 
-export function extractUserIdFromHeaders(req: FastifyRequest): string | null {
-    const authHeader = req.headers['authorization'] || req.headers['Authorization']
-    if (!authHeader || typeof authHeader !== 'string') return null
-
-    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader
-    try {
-        const decoded = jwt.decode(token) as { id?: string }
-        return decoded && decoded.id ? decoded.id : null
-    } catch {
-        return null
-    }
-}
-
-export function allowedTokenToExecuteAction(token: string, action: string) {
-    try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'default') as { id: string, role: string };
-        export enum AllowedActions {
-            CREATE_USER = 'CREATE_USER',
-            DELETE_USER = 'DELETE_USER',
-            UPDATE_USER = 'UPDATE_USER',
-            VIEW_USER = 'VIEW_USER',
-            CREATE_POST = 'CREATE_POST',
-            DELETE_POST = 'DELETE_POST',
-            UPDATE_POST = 'UPDATE_POST',
-            VIEW_POST = 'VIEW_POST',
-            // Add more actions as needed
-        }
-
-
-    }}
