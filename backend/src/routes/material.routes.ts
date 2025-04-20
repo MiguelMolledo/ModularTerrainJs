@@ -8,9 +8,10 @@ import { Action } from '../types/roles';
 export default async function materialRoutes(fastify: FastifyInstance) {
     fastify.get('/all', {
         preHandler: async (req, reply) => {
-            await verifyToken(req, reply);
+            await checkPermission(Action.GetAllMaterials)(req, reply)
         }
-    }, controller.getAll);
+    },
+        controller.getAll);
 
     fastify.get('/:id', {
         preHandler: async (req, reply) => {
@@ -18,13 +19,7 @@ export default async function materialRoutes(fastify: FastifyInstance) {
         }
     }, controller.getById);
 
-    fastify.post('/', {
-        preHandler: async (req, reply) => {
-            await verifyToken(req, reply);
-            await verifyTokenAndRole(req, reply, 'admin');
-        }
-    },
-        controller.create);
+    fastify.post('/', controller.create);
 
     fastify.put('/:id', {
         preHandler: async (req, reply) => {
@@ -38,6 +33,7 @@ export default async function materialRoutes(fastify: FastifyInstance) {
             await checkPermission(Action.DeleteMaterial)(req, reply);
         }
     }, controller.deleteById);
+
 
 
 

@@ -11,7 +11,7 @@ export function checkPermission(action: Action) {
         request: FastifyRequest,
         reply: FastifyReply
     ) {
-        const { id, role } = extractDataFromHeaders(request) || {};
+        const { id, role } = extractDataFromHeaders(request) as { id: string, role: string } || { id: '', role: '' };
         if (!role || !canExecute(role as Role, action)) {
             return reply.status(403).send({ message: 'Forbidden' });
         }

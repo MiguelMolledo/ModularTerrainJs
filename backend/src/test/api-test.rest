@@ -65,10 +65,15 @@ Content-Type: application/json
 
 ### Get all Materials
 GET http://localhost:3000/materials/all
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUxNTE3NjYsImV4cCI6MTc0NTE1NTM2Nn0.2rlgKA87tC_4tCP4JPn2CHXdn03mHMiRxfVW--VaFMw
 
 
 ### Get Material By ID
-GET http://localhost:3000/materials/?id=1
+GET http://localhost:3000/materials/?id=6804e820660b8698959769ab
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUxNTE3NjYsImV4cCI6MTc0NTE1NTM2Nn0.2rlgKA87tC_4tCP4JPn2CHXdn03mHMiRxfVW--VaFMw
+
 
 
 
@@ -78,6 +83,7 @@ GET http://localhost:3000/materials/?name=1
 ### Create Material
 POST http://localhost:3000/materials/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUxNTE3NjYsImV4cCI6MTc0NTE1NTM2Nn0.2rlgKA87tC_4tCP4JPn2CHXdn03mHMiRxfVW--VaFMw
 
 {
   "name": "PVA Glue",

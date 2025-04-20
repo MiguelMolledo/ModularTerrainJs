@@ -11,6 +11,8 @@ export const permissions: Record<Role, Action[]> = {
         Action.CreateMaterial,
         Action.UpdateMaterial,
         Action.DeleteMaterial,
+        Action.GetAllMaterials,
+
         Action.createTile,
         Action.updateTile,
         Action.deleteTile,
