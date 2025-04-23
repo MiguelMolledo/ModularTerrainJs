@@ -1,6 +1,7 @@
 import request from "supertest";
-import { app } from '../src/index';
+import { app } from '../index';
 
+import { extractDataFromToken } from "../utils/auth";
 
 enum DefaultUser {
     Name = 'Test User',
@@ -20,9 +21,9 @@ enum AdminUser {
 describe('Admin Routes', () => {
 
     let adminToken: string;
+    let userToken: string;
     beforeAll(async () => {
 
-        adminToken = 'caca';
         const response = await request(app.server)
             .post('/auth/register')
             .send({
@@ -34,6 +35,20 @@ describe('Admin Routes', () => {
         expect(response.status).toBe(201);
         expect(response.body).toHaveProperty('token');
         adminToken = response.body.token;
+
+        // create a user for testing
+        const userResponse = await request(app.server)
+            .post('/auth/register')
+            .send({
+                name: DefaultUser.Name,
+                email: DefaultUser.Email,
+                password: DefaultUser.Password,
+                role: DefaultUser.Role
+            });
+        expect(userResponse.status).toBe(201);
+        expect(userResponse.body).toHaveProperty('token');
+        userToken = userResponse.body.token;
+
     })
 
     it('should get all users', async () => {
@@ -46,6 +61,19 @@ describe('Admin Routes', () => {
 
         expect(response.body.length).toBeGreaterThan(0);
     })
+    it('remove user', async () => {
+
+        const userData = extractDataFromToken(userToken)
+
+
+        const response = await request(app.server)
+            .delete(`/users/${userData.id}`)
+            .set('Authorization', `Bearer ${adminToken}`)
+            .send();
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveProperty('message', 'User deleted successfully');
+    }
+    )
 
 
 })

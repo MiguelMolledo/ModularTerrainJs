@@ -1,7 +1,7 @@
 
 
 import { FastifyInstance } from 'fastify';
-import { verifyToken, verifyTokenAndRole } from '../controllers/auth.controller';
+import { verifyTokenAndRole, verifyTokenAndRoleOrSelf } from '../utils/auth'
 import { checkPermission } from '../middleware/checkPermissions';
 import * as controller from '../controllers/material.controller';
 import { Action } from '../types/roles';
@@ -15,7 +15,8 @@ export default async function materialRoutes(fastify: FastifyInstance) {
 
     fastify.get('/:id', {
         preHandler: async (req, reply) => {
-            await verifyToken(req, reply);
+            1
+            await verifyTokenAndRoleOrSelf(req, reply, 'admin')
         }
     }, controller.getById);
 
@@ -23,14 +24,13 @@ export default async function materialRoutes(fastify: FastifyInstance) {
 
     fastify.put('/:id', {
         preHandler: async (req, reply) => {
-            await verifyToken(req, reply);
-            await verifyTokenAndRole(req, reply, 'admin');
+            await verifyTokenAndRoleOrSelf(req, reply, 'admin')
         }
     }, controller.updateById);
 
     fastify.delete('/:id', {
         preHandler: async (req, reply) => {
-            await checkPermission(Action.DeleteMaterial)(req, reply);
+            await verifyTokenAndRoleOrSelf(req, reply, 'admin')
         }
     }, controller.deleteById);
 

@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { app } from '../src/index';
+import { app } from '../index';
 
 
 enum DefaultUser {
@@ -12,7 +12,7 @@ enum DefaultUser {
 describe('Authetication Routes', () => {
     let token: string;
 
-    it('should register a new user', async () => {
+    it('should regisster and return a token', async () => {
         const response = await request(app.server)
             .post('/auth/register')
             .send({
@@ -25,7 +25,7 @@ describe('Authetication Routes', () => {
         expect(response.body).toHaveProperty('token');
     });
 
-    it('should Login with valid credentials', async () => {
+    it('should Login with valid credentials and return a token', async () => {
         const response = await request(app.server)
             .post('/auth/register')
             .send({
@@ -37,4 +37,7 @@ describe('Authetication Routes', () => {
         token = response.body.token;
 
     })
+
+
+
 })

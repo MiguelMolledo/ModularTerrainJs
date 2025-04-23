@@ -1,7 +1,7 @@
 // src/hooks/checkPermission.ts
 
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { canExecute } from '../utils/auth';
+import { canExecute, extractDataFromHeaders } from '../utils/auth';
 import { Role } from '../types/roles';
 import { Action } from '../types/roles';
 import jwt from 'jsonwebtoken';
@@ -19,18 +19,4 @@ export function checkPermission(action: Action) {
 }
 
 
-
-export function extractDataFromHeaders(request: FastifyRequest): { id: string, role: string } | null {
-    const authHeader = request.headers['authorization'] || request.headers['Authorization']
-    if (!authHeader || typeof authHeader !== 'string') return null
-    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : authHeader
-    try {
-        const { id, role } = jwt.decode(token) as { id?: string, role?: string }
-
-        if (!id || !role) return null
-        return { id, role }
-    } catch {
-        return null
-    }
-}
 

@@ -1,5 +1,5 @@
 import { FastifyInstance } from 'fastify'
-import { verifyToken, verifyTokenAndRole } from '../controllers/auth.controller'
+import { verifyTokenAndRole, verifyTokenAndRoleOrSelf } from '../utils/auth'
 import * as controller from '../controllers/user.controller'
 
 export default async function userRoutes(fastify: FastifyInstance) {
@@ -8,7 +8,11 @@ export default async function userRoutes(fastify: FastifyInstance) {
             await verifyTokenAndRole(req, reply, 'admin')
         }
     }, controller.getAll)
-    fastify.get('/:id', controller.getById)
+    fastify.get('/:id', {
+        preHandler: async (req, reply) => {
+            await verifyTokenAndRoleOrSelf(req, reply, 'admin')
+        }
+    }, controller.getById)
     fastify.get('/current', {
         preHandler: async (req, reply) => {
             await verifyTokenAndRole(req, reply, 'admin')
@@ -16,8 +20,16 @@ export default async function userRoutes(fastify: FastifyInstance) {
     }, controller.getCurrent)
 
 
-    fastify.put('/:id', controller.updateById)
-    fastify.delete('/:id', controller.deleteById)
+    fastify.put('/:id', {
+        preHandler: async (req, reply) => {
+            await verifyTokenAndRoleOrSelf(req, reply, 'admin')
+        }
+    }, controller.updateById)
+    fastify.delete('/:id', {
+        preHandler: async (req, reply) => {
+            await verifyTokenAndRoleOrSelf(req, reply, 'admin')
+        }
+    }, controller.deleteById)
 
 }
 
