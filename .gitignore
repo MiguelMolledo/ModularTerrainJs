@@ -136,4 +136,6 @@ dist
 .pnp.*
 
 
-/backend/test/*.rest
+backend/.env.dev
+backend/.env.prod
+backend/.env.test

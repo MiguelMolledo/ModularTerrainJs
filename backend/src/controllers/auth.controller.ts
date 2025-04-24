@@ -65,7 +65,7 @@ export async function login(req: FastifyRequest, reply: FastifyReply) {
             process.env.JWT_SECRET || 'defaultSecretKey',// rework this with dotenv
             { expiresIn: '1h' }
         )
-        reply.code(201).send({ token })
+        reply.code(200).send({ token })
 
 
 

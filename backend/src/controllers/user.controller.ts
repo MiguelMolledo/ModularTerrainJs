@@ -9,7 +9,7 @@ import mongoose from 'mongoose'
 export async function getCurrent(req: FastifyRequest, reply: FastifyReply) {
     console.log(req.headers)
     console.log('TESTINGasdasd')
-
+    reply.code(200).send()
 
 }
 
