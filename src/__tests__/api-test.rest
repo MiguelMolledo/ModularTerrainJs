@@ -1,15 +1,15 @@
 #### GET request
-GET http://127.0.0.1:3000/users/all
+GET http://127.0.0.1:3001/users/all
 
 
-GET http://127.0.0.1:3000/users/?id=1
+GET http://127.0.0.1:3001/users/?id=1
 
 
 
 ### AUTH REQUESTS
 
 #### Register
-POST http://127.0.0.1:3000/auth/register
+POST http://127.0.0.1:3001/auth/register
 Content-Type: application/json
 
 {
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 
 ### Register another user
-POST http://127.0.0.1:3000/auth/register
+POST http://127.0.0.1:3001/auth/register
 Content-Type: application/json
 
 {
@@ -33,7 +33,7 @@ Content-Type: application/json
 
 
 ### Login
-POST http://127.0.0.1:3000/auth/login
+POST http://127.0.0.1:3001/auth/login
 Content-Type: application/json
 
 {
@@ -42,39 +42,39 @@ Content-Type: application/json
 }
 
 ### get current user
-GET http://localhost:3000/users/current
+GET http://localhost:3001/users/current
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDQ5MjMyNjUsImV4cCI6MTc0NDkyNjg2NX0.45ejBxkE6gZ93jwEvTv0jVRxPdOLwsyllfJmsORMMTo
 
 
 ### get current user
-GET http://localhost:3000/users/current
+GET http://localhost:3001/users/current
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUzMzkyMTIsImV4cCI6MTc0NTM0MjgxMn0.ApnnSjPYfgXTzGDlJ5iklYOR_qg-BA3CodYeliaPGbU
 
 ### UPDATE request
-PUT http://localhost:3000/users/update
+PUT http://localhost:3001/users/update
 
 ### Get all users
-GET http://localhost:3000/users/
+GET http://localhost:3001/users/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUzMzkyMTIsImV4cCI6MTc0NTM0MjgxMn0.ApnnSjPYfgXTzGDlJ5iklYOR_qg-BA3CodYeliaPGbU
 
 ### Get user by ID
-GET http://localhost:3000/users/68016b3cd2df5ee86f8a0533
+GET http://localhost:3001/users/68016b3cd2df5ee86f8a0533
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUzMzkyMTIsImV4cCI6MTc0NTM0MjgxMn0.ApnnSjPYfgXTzGDlJ5iklYOR_qg-BA3CodYeliaPGbU
 
 
 ### REMOVE USER BY ID
-DELETE http://localhost:3000/users/68016b3cd2df5ee86f8a0533
+DELETE http://localhost:3001/users/68016b3cd2df5ee86f8a0533
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUzMzkyMTIsImV4cCI6MTc0NTM0MjgxMn0.ApnnSjPYfgXTzGDlJ5iklYOR_qg-BA3CodYeliaPGbU
 
 
 ### Get all Materials
-GET http://localhost:3000/materials/all
+GET http://localhost:3001/materials/all
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUxNTE3NjYsImV4cCI6MTc0NTE1NTM2Nn0.2rlgKA87tC_4tCP4JPn2CHXdn03mHMiRxfVW--VaFMw
 
 
 ### Get Material By ID
-GET http://localhost:3000/materials/?id=6804e820660b8698959769ab
+GET http://localhost:3001/materials/?id=6804e820660b8698959769ab
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUxNTE3NjYsImV4cCI6MTc0NTE1NTM2Nn0.2rlgKA87tC_4tCP4JPn2CHXdn03mHMiRxfVW--VaFMw
 
@@ -82,10 +82,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxN
 
 
 ### Get Material By Name
-GET http://localhost:3000/materials/?name=1
+GET http://localhost:3001/materials/?name=1
 
 ### Create Material
-POST http://localhost:3000/materials/
+POST http://localhost:3001/materials/
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUxNTE3NjYsImV4cCI6MTc0NTE1NTM2Nn0.2rlgKA87tC_4tCP4JPn2CHXdn03mHMiRxfVW--VaFMw
 
