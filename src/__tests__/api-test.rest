@@ -82,7 +82,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxN
 
 
 ### Get Material By Name
-GET http://localhost:3001/materials/?name=1
+GET http://localhost:3001/materials/all
 
 ### Create Material
 POST http://localhost:3001/materials/
@@ -90,10 +90,17 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MDE2YTcxNDRjMGIwZGM4ZTY1NThkMyIsImVtYWlsIjoibW9sbGVkb21AZXhhbXBsZS5jb20iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDUxNTE3NjYsImV4cCI6MTc0NTE1NTM2Nn0.2rlgKA87tC_4tCP4JPn2CHXdn03mHMiRxfVW--VaFMw
 
 {
-  "name": "PVA Glue",
+  "name": "Miguel MAterial",
   "description": "PVA glue is a white, water-based adhesive that dries clear and flexible. It is commonly used in arts and crafts, woodworking, and paper projects.",
+  "image": "https://picsum.photos/200?24",
+  "webLinks": [
+      "https://en.wikipedia.org/wiki/Mod_Podge",
+      "https://plaidonline.com/brands/mod-podge"
+        ],
+  "price": 5.66,
   "dimensions": "1L",
-  "price": 5.66
+  "tags": ["Glues&Sealants"]
+
 }
 
 

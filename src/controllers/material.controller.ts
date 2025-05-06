@@ -30,11 +30,26 @@ export async function getById(req: FastifyRequest, reply: FastifyReply) {
     }
 }
 
+
+// "id": 4,
+// "name": "Mod Podge",
+// "description": "All-in-one sealer, glue, and finish. Used to seal foam terrain, add durability, and prepare surfaces for painting and weathering.",
+// "image": "https://picsum.photos/200?4",
+// "webLinks": [
+//     "https://en.wikipedia.org/wiki/Mod_Podge",
+//     "https://plaidonline.com/brands/mod-podge"
+// ],
+// "price": 8,
+// "dimensions": "236ml",
+// "tags": [
+//     "Glues&Sealants"
+// ]
+
 export async function create(req: FastifyRequest, reply: FastifyReply) {
-    const { name, description = '', image = '', webLink = '', price = 0, dimensions = '' } = req.body as { name: string, description: string, image: string, webLink: string, price: number, dimensions: string }
+    const { name, description = '', image = '', webLink = [], price = 0, dimensions = '', tags = [] } = req.body as { name: string, description: string, image: string, webLink: string[], price: number, dimensions: string, tags: string[] }
 
     try {
-        const material = new Material({ name, description, image, webLink, price, dimensions })
+        const material = new Material({ tags, name, description, image, webLink, price, dimensions })
         await material.save()
         reply.code(201).send(material)
     } catch (err) {
